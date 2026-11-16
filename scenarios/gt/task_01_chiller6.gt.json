@@ -1,0 +1,51 @@
+{
+  "schema_version": "3.0",
+  "scenario_id": "task_01_chiller6",
+  "no_action_ticks": [
+    "2026-05-10T08:00:00Z",
+    "2026-05-10T08:15:00Z"
+  ],
+  "needs": [
+    {
+      "need_id": "need_01",
+      "asset_id": "chiller_6",
+      "fault_type": "evaporator_waterside_fouling",
+      "aliases": [
+        "waterside_fouling",
+        "evaporator_fouling"
+      ],
+      "visible_from": "2026-05-10T08:45:00Z",
+      "valid_window": {
+        "start": "2026-05-10T08:45:00Z",
+        "end": "2026-05-10T09:00:00Z"
+      },
+      "allowed_actions": [
+        {
+          "decision": "investigate",
+          "tool_name": "check_tsfm_anomaly"
+        },
+        {
+          "decision": "investigate",
+          "tool_name": "lookup_fmea_manual"
+        },
+        {
+          "decision": "execute",
+          "tool_name": "create_maintenance_workorder"
+        }
+      ],
+      "completion_check": {
+        "mode": "tool_call",
+        "required_tool": "create_maintenance_workorder",
+        "required_args_subset": {
+          "asset_id": "chiller_6"
+        },
+        "allow_pending_if_investigated": true
+      },
+      "supporting_obs_ids": [
+        "task_01_chiller6:obs:0008",
+        "task_01_chiller6:obs:0009",
+        "task_01_chiller6:obs:0011"
+      ]
+    }
+  ]
+}

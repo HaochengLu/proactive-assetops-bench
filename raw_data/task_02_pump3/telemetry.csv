@@ -1,0 +1,10 @@
+Timestamp,asset_id,source_type,source_ref,vibration_mm_s,bearing_temp_c
+2026-05-10T08:00:00Z,pump_3,adapted,pump3_annotated_small.csv#row_10,2.1,48.0
+2026-05-10T08:00:00Z,pump_4,adapted,pump4_annotated_small.csv#row_10,1.9,46.5
+2026-05-10T08:15:00Z,pump_3,adapted,pump3_annotated_small.csv#row_11,2.4,49.5
+2026-05-10T08:15:00Z,pump_4,adapted,pump4_annotated_small.csv#row_11,2.0,47.0
+2026-05-10T08:25:00Z,pump_3,adapted,pump3_annotated_small.csv#row_12,7.4,74.0
+2026-05-10T08:30:00Z,pump_3,adapted,pump3_annotated_small.csv#row_13,7.8,76.0
+2026-05-10T08:30:00Z,pump_4,adapted,pump4_annotated_small.csv#row_13,2.1,47.5
+2026-05-10T08:45:00Z,pump_3,adapted,pump3_annotated_small.csv#row_14,8.2,79.0
+2026-05-10T08:45:00Z,pump_4,adapted,pump4_annotated_small.csv#row_14,2.0,47.2

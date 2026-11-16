@@ -1,0 +1,160 @@
+{
+  "public_spec": {
+    "scenario_id": "task_01_chiller6",
+    "tags": ["iot", "tsfm", "fmsr", "workorder", "chiller", "multi_asset"],
+    "original_assetops_meta": {
+      "dataset": "IBM/AssetOpsBench",
+      "category": "multi_agent_proactive_fmea",
+      "utterance_id": "aob_chiller6_adapted_01"
+    },
+    "asset_info": {
+      "site_id": "plant_01",
+      "asset_id": "chiller_6",
+      "asset_type": "centrifugal_chiller",
+      "initial_status": "running",
+      "sensor_units": {
+        "evap_approach_temp_c": "C",
+        "chw_flow_lps": "L/s"
+      },
+      "normal_ranges": {
+        "evap_approach_temp_c": [1.0, 2.5],
+        "chw_flow_lps": [40.0, 55.0]
+      }
+    },
+    "assets": [
+      {
+        "site_id": "plant_01",
+        "asset_id": "chiller_6",
+        "asset_type": "centrifugal_chiller",
+        "initial_status": "running",
+        "sensor_units": {
+          "evap_approach_temp_c": "C",
+          "chw_flow_lps": "L/s"
+        },
+        "normal_ranges": {
+          "evap_approach_temp_c": [1.0, 2.5],
+          "chw_flow_lps": [40.0, 55.0]
+        }
+      },
+      {
+        "site_id": "plant_01",
+        "asset_id": "chiller_7",
+        "asset_type": "centrifugal_chiller",
+        "initial_status": "running",
+        "sensor_units": {
+          "evap_approach_temp_c": "C",
+          "chw_flow_lps": "L/s"
+        },
+        "normal_ranges": {
+          "evap_approach_temp_c": [1.0, 2.5],
+          "chw_flow_lps": [40.0, 55.0]
+        }
+      }
+    ],
+    "persistent_goals": [
+      "持续监测冷水机组群（chiller_6、chiller_7）运行状态，结合多模态日志识别真实持续故障。",
+      "在指标正常、存在计划性切负荷维护日志或仅为单点瞬态尖峰时保持等待（wait），避免误报。",
+      "确认持续异常后通过 FMEA 手册核实故障模式，并在权限允许范围内下发维护工单。"
+    ],
+    "permissions": {
+      "has_permission_constraints": false,
+      "allowed_decisions": ["wait", "query", "investigate", "request_approval", "execute"],
+      "approval_required_tools": [],
+      "forbidden_tools": [],
+      "approval_policy": {}
+    },
+    "replay_ticks": [
+      "2026-05-10T08:00:00Z",
+      "2026-05-10T08:15:00Z",
+      "2026-05-10T08:30:00Z",
+      "2026-05-10T08:45:00Z",
+      "2026-05-10T09:00:00Z"
+    ],
+    "extra_events": [
+      {
+        "release_time": "2026-05-10T08:15:00Z",
+        "asset_id": "chiller_6",
+        "modality": "maintenance_log",
+        "source_type": "adapted",
+        "source_ref": "maint_log.json#entry_02",
+        "payload": {
+          "event": "planned_load_shift",
+          "planned_load_shift": true,
+          "expected_transient": true,
+          "note": "Scheduled chiller staging load shift; temporary approach temp rise expected."
+        }
+      }
+    ],
+    "tool_catalog_data": {
+      "fmea_manuals": [
+        {
+          "fault_type": "condenser_tube_scaling",
+          "asset_type": "centrifugal_chiller",
+          "symptom_metric": "condenser_approach_temp_c",
+          "threshold_high": 3.5,
+          "recommended_tool": "create_maintenance_workorder"
+        },
+        {
+          "fault_type": "chilled_water_flow_restriction",
+          "asset_type": "centrifugal_chiller",
+          "symptom_metric": "chw_flow_lps",
+          "threshold_low": 36.0,
+          "recommended_tool": "create_urgent_shutdown_workorder"
+        },
+        {
+          "fault_type": "evaporator_waterside_fouling",
+          "asset_type": "centrifugal_chiller",
+          "symptom_metric": "evap_approach_temp_c",
+          "threshold_high": 3.2,
+          "recommended_tool": "create_maintenance_workorder"
+        }
+      ],
+      "historical_workorders": [
+        {
+          "workorder_id": "HIST-WO-001",
+          "asset_id": "chiller_6",
+          "fault_type": "sensor_calibration_drift",
+          "priority": "normal",
+          "status": "closed",
+          "created_at": "2026-04-15T10:00:00Z",
+          "summary": "Quarterly approach temp sensor calibration completed"
+        }
+      ]
+    }
+  },
+  "gt_spec": {
+    "no_action_ticks": [
+      "2026-05-10T08:00:00Z",
+      "2026-05-10T08:15:00Z"
+    ],
+    "needs": [
+      {
+        "need_id": "need_01",
+        "asset_id": "chiller_6",
+        "fault_type": "evaporator_waterside_fouling",
+        "aliases": ["waterside_fouling", "evaporator_fouling"],
+        "visible_from": "2026-05-10T08:45:00Z",
+        "supporting_timestamps": [
+          "2026-05-10T08:40:00Z",
+          "2026-05-10T08:45:00Z",
+          "2026-05-10T09:00:00Z"
+        ],
+        "valid_window": {
+          "start": "2026-05-10T08:45:00Z",
+          "end": "2026-05-10T09:00:00Z"
+        },
+        "allowed_actions": [
+          {"decision": "investigate", "tool_name": "check_tsfm_anomaly"},
+          {"decision": "investigate", "tool_name": "lookup_fmea_manual"},
+          {"decision": "execute", "tool_name": "create_maintenance_workorder"}
+        ],
+        "completion_check": {
+          "mode": "tool_call",
+          "required_tool": "create_maintenance_workorder",
+          "required_args_subset": {"asset_id": "chiller_6"},
+          "allow_pending_if_investigated": true
+        }
+      }
+    ]
+  }
+}

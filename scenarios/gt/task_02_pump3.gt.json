@@ -1,0 +1,56 @@
+{
+  "schema_version": "3.0",
+  "scenario_id": "task_02_pump3",
+  "no_action_ticks": [
+    "2026-05-10T08:00:00Z",
+    "2026-05-10T08:15:00Z"
+  ],
+  "needs": [
+    {
+      "need_id": "need_01",
+      "asset_id": "pump_3",
+      "fault_type": "bearing_wear_overheat",
+      "aliases": [
+        "bearing_wear",
+        "bearing_overheating",
+        "pump_bearing_wear"
+      ],
+      "visible_from": "2026-05-10T08:30:00Z",
+      "valid_window": {
+        "start": "2026-05-10T08:30:00Z",
+        "end": "2026-05-10T08:45:00Z"
+      },
+      "allowed_actions": [
+        {
+          "decision": "investigate",
+          "tool_name": "check_tsfm_anomaly"
+        },
+        {
+          "decision": "investigate",
+          "tool_name": "lookup_fmea_manual"
+        },
+        {
+          "decision": "request_approval",
+          "tool_name": "submit_approval_request"
+        },
+        {
+          "decision": "execute",
+          "tool_name": "create_urgent_shutdown_workorder"
+        }
+      ],
+      "completion_check": {
+        "mode": "tool_call",
+        "required_tool": "create_urgent_shutdown_workorder",
+        "required_args_subset": {
+          "asset_id": "pump_3"
+        },
+        "allow_pending_if_investigated": true
+      },
+      "supporting_obs_ids": [
+        "task_02_pump3:obs:0005",
+        "task_02_pump3:obs:0006",
+        "task_02_pump3:obs:0008"
+      ]
+    }
+  ]
+}

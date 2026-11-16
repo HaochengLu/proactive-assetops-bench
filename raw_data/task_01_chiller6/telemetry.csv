@@ -1,0 +1,12 @@
+timestamp,asset_id,source_type,source_ref,evap_approach_temp_c,chw_flow_lps,anomaly_label
+2026-05-10T08:00:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_10,1.9,47.5,0
+2026-05-10T08:00:00Z,chiller_7,adapted,chiller7_annotated_small.csv#row_10,1.8,48.2,0
+2026-05-10T08:15:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_11,2.7,47.0,0
+2026-05-10T08:15:00Z,chiller_7,adapted,chiller7_annotated_small.csv#row_11,1.9,48.0,0
+2026-05-10T08:30:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_12,2.0,47.6,0
+2026-05-10T08:30:00Z,chiller_7,adapted,chiller7_annotated_small.csv#row_12,2.65,48.1,0
+2026-05-10T08:40:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_13,3.3,47.8,1
+2026-05-10T08:45:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_14,3.5,47.7,1
+2026-05-10T08:45:00Z,chiller_7,adapted,chiller7_annotated_small.csv#row_14,1.85,48.3,0
+2026-05-10T09:00:00Z,chiller_6,adapted,chiller6_annotated_small.csv#row_15,3.7,47.4,1
+2026-05-10T09:00:00Z,chiller_7,adapted,chiller7_annotated_small.csv#row_15,1.8,48.4,0
