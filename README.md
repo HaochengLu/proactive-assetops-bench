@@ -19,8 +19,8 @@
 | 你负责的任务组 | 核心目标 | 入口文档与直达工具 |
 | :--- | :--- | :--- |
 | **任务 3 / 任务 4（场景与标注组）** | 适配 IBM AssetOpsBench（IoT / TSFM / FMSR / WorkOrder / 治理）新场景与 GT | 跳至 [第 5 节：任务 3/4 场景接入实战指南](#5-任务-3--任务-4-场景接入实战指南)（使用 `framework.convert` + `framework.validate` + 零改代码 `framework.score`） |
-| **任务 2（GPU / vLLM 性能压测组）** | 运行 vLLM Cache OFF/ON、并发 `1/4/8`、采集 TTFT / RPS / `cached_tokens` | 跳至 [第 6 节：任务 2 vLLM 接入与并发压测指南](#6-任务-2-gpu--vllm-组接入与并发压测指南)（使用 `framework.run --backend vllm` + `framework.export` + `framework.replay`） |
-| **任务 5（评估与汇总分析组）** | 核查主动性 5 大指标、统计前缀复用率与生成 OFF vs ON 对比报告 | 跳至 [第 7 节：任务 5 核心产物与字段速查表](#7-任务-5-评估与汇总组核心产物与字段速查表)（消费 `run_log.jsonl`、`run_summary.json`、`score_report.json`、`framework.compare`） |
+| **任务 2（GPU / vLLM 性能压测组）** | 运行 vLLM Cache OFF/ON、并发 `1/4/8`、采集 TTFT / RPS / `cached_tokens` | 跳至 [第 6 节：任务 2 vLLM 接入与并发压测指南](#6-任务-2gpu--vllm-组接入与并发压测指南)（使用 `framework.run --backend vllm` + `framework.export` + `framework.replay`） |
+| **任务 5（评估与汇总分析组）** | 核查主动性 5 大指标、统计前缀复用率与生成 OFF vs ON 对比报告 | 跳至 [第 7 节：任务 5 核心产物与字段速查表](#7-任务-5评估与汇总组核心产物与字段速查表)（消费 `run_log.jsonl`、`run_summary.json`、`score_report.json`、`framework.compare`） |
 
 ---
 
